@@ -19,6 +19,7 @@ function CowsayController($log, $scope) {
   $log.debug('init CowsayController');
   let cowsayCtrl = $scope.cowsayCtrl = {};
   cowsayCtrl.title = 'I am a Cow! I say stuff!';
+  cowsayCtrl.savedTitle = 'I am a cow who repeats when the button is clicked!';
 
   cowsayCtrl.updateCow = function(input) {
     $log.debug('cowsayCtrl.updateCow()');
@@ -27,8 +28,8 @@ function CowsayController($log, $scope) {
 
   cowsayCtrl.helloClick = function(input) {
     $log.debug('cowsayCtrl.helloClick()');
-    //lecture code show below line as $log.log. Why that and not debug?
     $log.debug(input);
+    return '\n' + cowsay.say({text: input || 'I\'m ready to repeat!'});
   };
 
 }
