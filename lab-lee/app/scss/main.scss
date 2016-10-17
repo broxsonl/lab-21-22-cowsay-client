@@ -1,5 +1,12 @@
 $app-bg: #7a7aff;
+$app-ff: impact;
+$app-cowcolor: maroon;
 
 body {
   background-color: $app-bg;
+  font-family: $app-ff;
+}
+
+pre {
+  color: $app-cowcolor;
 }
