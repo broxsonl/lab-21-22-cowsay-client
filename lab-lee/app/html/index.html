@@ -6,20 +6,22 @@
   <body>
     <section ng-controller="CowsayController">
       <h1> {{cowsayCtrl.title}} </h1>
-      <!--why ng? Is it short for 'angular'?-->
+
       <input type="text" ng-model="cowsayCtrl.text">
 
-      <button ng-click="input = cowsayCtrl.text"> Click to save below.</button>
+      <button ng-click="cowsayCtrl.helloClick(cowsayCtrl.text)"> Click to save below.</button>
 
       <pre>
         {{cowsayCtrl.updateCow(cowsayCtrl.text)}}
       </pre>
 
-      <h1>{{cowsayCtrl.savedTitle}} </h1>
+      <h1>{{cowsayCtrl.savedTitle}}</h1>
+
       <pre>
-        {{cowsayCtrl.helloClick(input)}}
+        {{cowsayCtrl.speak}}
       </pre>
 
+      <button ng-click="cowsayCtrl.backClick()"> Click to revert to last.</button>
 
     </section>
   </body>
