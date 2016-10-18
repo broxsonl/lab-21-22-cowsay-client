@@ -9,6 +9,28 @@ body {
   font-family: $app-ff;
 }
 
+section {
+  margin: 0 25% 0 25%;
+  text-align: center;
+}
+
+button:hover {
+  background: pink;
+}
+
+pre {
+  color: $app-cowcolor;
+  text-align: left;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: #ff7a7a;
+  list-style: none;
+}
+
 .app-red input {
   border: 2px solid red;
 }
@@ -39,20 +61,4 @@ body {
 
 .app-cow-yellow {
   color: yellow;
-}
-
-button:hover {
-  background: pink;
-}
-
-pre {
-  color: $app-cowcolor;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background: #ff7a7a;
-  list-style: none;
 }
