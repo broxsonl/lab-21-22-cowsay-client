@@ -1,3 +1,5 @@
+@import "~font-awesome/scss/font-awesome.scss";
+
 $app-bg: #7a7aff;
 $app-ff: impact;
 $app-cowcolor: maroon;
@@ -5,6 +7,10 @@ $app-cowcolor: maroon;
 body {
   background-color: $app-bg;
   font-family: $app-ff;
+}
+
+app-red {
+  border: 2px solid red;
 }
 
 pre {
