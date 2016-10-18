@@ -4,24 +4,43 @@
     <title> Cowsay Client </title>
   </head>
   <body>
-    <section ng-controller="CowsayController">
+    <nav ng-controller="NavController as navCtrl">
+      <ul>
+        <li ng-repeat="navItem in navCtrl.routes">
+          <a ng-href="{{navItem.url}}"> {{navItem.name}}</a>
+        </li>
+      </ul>
+    </nav>
+    <i class="fa fa-themeisle"></i>
+
+    <section ng-controller="CowsayController as cowsayCtrl"
+    ng-init="cowsayCtrl.currentCow = 'default'">
       <h1> {{cowsayCtrl.title}} </h1>
 
-      <input type="text" ng-model="cowsayCtrl.text">
+      <form ng-submit="cowsayCtrl.talk(cowsayCtrl.text)"
+      novalidate
+      name="cowsayForm"
+      ng-class="{'app-red': cowsayForm.$valid}">
+        <input type="text" ng-model="cowsayCtrl.text">
 
-      <button ng-click="cowsayCtrl.helloClick(cowsayCtrl.text)"> Click to save below.</button>
+        <select ng-model="cowsayCtrl.currentCow">
+          <option ng-repeat="cowfile in cowsayCtrl.cowfiles" value="{{cowfile}}">
+            {{cowfile}}
+          </option>
+        </select>
+        <button type="button" ng-click="cowsayCtrl.undo()"> Undo </button>
+        <button type="submit"> Talk!</button>
+      </form>
 
       <pre>
         {{cowsayCtrl.updateCow(cowsayCtrl.text)}}
       </pre>
 
-      <h1>{{cowsayCtrl.savedTitle}}</h1>
+      <h1 ng-if="!cowsayCtrl.speak  ">{{cowsayCtrl.savedTitle}}</h1>
 
-      <pre>
+      <pre ng-show="cowsayCtrl.speak">
         {{cowsayCtrl.speak}}
       </pre>
-
-      <button ng-click="cowsayCtrl.backClick()"> Click to revert to last.</button>
 
     </section>
   </body>
