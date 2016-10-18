@@ -5,43 +5,59 @@
   </head>
   <body>
     <nav ng-controller="NavController as navCtrl">
+      <i class="fa fa-themeisle"></i>
       <ul>
         <li ng-repeat="navItem in navCtrl.routes">
           <a ng-href="{{navItem.url}}"> {{navItem.name}}</a>
         </li>
       </ul>
     </nav>
-    <i class="fa fa-themeisle"></i>
 
-    <section ng-controller="CowsayController as cowsayCtrl"
+    <section
+    ng init="cowsayCtrl.currentColor = 'default'"
+    ng-controller="CowsayController as cowsayCtrl"
     ng-init="cowsayCtrl.currentCow = 'default'">
       <h1> {{cowsayCtrl.title}} </h1>
-
       <form ng-submit="cowsayCtrl.talk(cowsayCtrl.text)"
       novalidate
       name="cowsayForm"
-      ng-class="{'app-red': cowsayForm.$valid}">
-        <input type="text" ng-model="cowsayCtrl.text">
+      ng-class="{'app-red': cowsayForm.$invalid, 'app-green': cowsayForm.$valid, 'app-stop': cowsayForm.$invalid}">
+        <input type="text" ng-model="cowsayCtrl.text" required ng-minlength="1" required ng-pristine="true" required ng-maxlength="20">
 
         <select ng-model="cowsayCtrl.currentCow">
           <option ng-repeat="cowfile in cowsayCtrl.cowfiles" value="{{cowfile}}">
             {{cowfile}}
           </option>
         </select>
-        <button type="button" ng-click="cowsayCtrl.undo()"> Undo </button>
-        <button type="submit"> Talk!</button>
+
+          <select ng-model="cowsayCtrl.currentColor">
+            <option ng-repeat="cowcolor in cowsayCtrl.cowcolors" value="{{cowcolor.class}}">
+          {{cowcolor.name}}
+          </option>
+        </select>
+
+        <button ng-if="!!cowsayCtrl.speak" type="button" ng-click="cowsayCtrl.undo()"> Undo </button>
+        <button
+        name="cowsaySubmit"
+        ng-hide="cowsayForm.$pristine"
+        type="submit"> Talk!
+      </button>
+
       </form>
 
-      <pre>
+      <pre
+      ng class="{{cowsayCtrl.currentColor}}"
+      ng-if="cowsayCtrl.text">
         {{cowsayCtrl.updateCow(cowsayCtrl.text)}}
       </pre>
 
-      <h1 ng-if="!cowsayCtrl.speak  ">{{cowsayCtrl.savedTitle}}</h1>
+      <h1 ng-if="!!cowsayCtrl.speak">{{cowsayCtrl.savedTitle}}</h1>
 
-      <pre ng-show="cowsayCtrl.speak">
+      <pre
+      ng class="{{cowsayCtrl.currentColor}}"
+      ng-show="cowsayCtrl.speak">
         {{cowsayCtrl.speak}}
       </pre>
-
     </section>
   </body>
 </html>

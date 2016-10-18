@@ -1,6 +1,6 @@
 @import "~font-awesome/scss/font-awesome.scss";
 
-$app-bg: #7a7aff;
+$app-bg: #ffa77a;
 $app-ff: impact;
 $app-cowcolor: maroon;
 
@@ -9,10 +9,50 @@ body {
   font-family: $app-ff;
 }
 
-app-red {
+.app-red input {
   border: 2px solid red;
+}
+
+.app-green input {
+  border: 2px solid green;
+}
+
+.app-purple {
+  border: 2px solid black;
+}
+
+.app-cow-black {
+  color: black;
+}
+
+.app-cow-blue {
+  color: blue;
+}
+
+.app-cow-red {
+  color: red;
+}
+
+.app-cow-green {
+  color: green;
+}
+
+.app-cow-yellow {
+  color: yellow;
+}
+
+button:hover {
+  background: pink;
 }
 
 pre {
   color: $app-cowcolor;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: #ff7a7a;
+  list-style: none;
 }

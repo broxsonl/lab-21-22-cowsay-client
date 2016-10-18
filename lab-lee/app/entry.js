@@ -26,27 +26,48 @@ function CowsayController($log) {
   cowsay.list((err, cowfiles) => {
     this.cowfiles = cowfiles;
     this.currentCow = this.cowfiles[0];
-    console.log(cowfiles);
   });
+
+  this.cowcolors = [
+    {
+      name: 'black',
+      class: 'app-cow-black',
+    },
+    {
+      name: 'red',
+      class: 'app-cow-red',
+    },
+    {
+      name: 'blue',
+      class: 'app-cow-blue',
+    },
+    {
+      name: 'green',
+      class: 'app-cow-green',
+    },
+    {
+      name: 'yellow',
+      class: 'app-cow-yellow',
+    },
+
+  ];
+
+  this.currentColor = this.cowcolors[0].class;
+
 
   this.updateCow = function(input) {
     $log.debug('this.updateCow()');
-    return '\n' + cowsay.say({text: input || 'Give me something to say, human!'});
-  };
-
-  this.updateThinkCow = function(input) {
-    $log.debug('this.updateCow()');
-    return '\n' + cowsay.think({text: input || 'Give me something to say, human!', f: this.currentCow});
+    return '\n' + cowsay.say({text: input || 'Give me something to say, human!', f: this.currentCow});
   };
 
   this.talk = function(input) {
     $log.debug('this.updateCow()');
     this.speak = this.updateCow(input);
-    this.array.push(this.talk);
+    this.array.push(this.speak);
   };
 
   this.undo = function() {
-    this.talk = this.history.pop() || '';
+    this.speak = this.array.pop() || '';
   };
 }
 
@@ -63,6 +84,18 @@ function NavController($log) {
     {
       name: 'About',
       url: '/about',
+    },
+    {
+      name: 'FAQ',
+      url: '/faq',
+    },
+    {
+      name: 'Blog',
+      url: '/blog',
+    },
+    {
+      name: 'Cows',
+      url: '/cows',
     },
   ];
 }
