@@ -85,6 +85,14 @@ describe('testing cowsayCtrl', function() {
       expect(this.cowsayCtrl.speak).toEqual(expectedResult);
       expect(this.cowsayCtrl.array.length).toEqual(1);
     });
+
+    it('with no input passed in; default', () => {
+      let expectedResult = '\n' + cowsay.say({text: 'Give me something to say, human!', f: this.cowsayCtrl.currentCow});
+      this.cowsayCtrl.talk('stuff');
+      this.cowsayCtrl.undo();
+      this.cowsayCtrl.undo();
+      expect(this.cowsayCtrl.speak).toEqual('');
+      expect(this.cowsayCtrl.updateCow()).toBe(expectedResult);
+    });
   });
 });
-//test for all defaults
