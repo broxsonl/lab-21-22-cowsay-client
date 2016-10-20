@@ -13,7 +13,7 @@ const angular = require('angular');
 const cowsayApp = angular.module('cowsayApp', []);
 
 // angular constructs
-cowsayApp.controller('CowsayController', [ '$log', '$scope', CowsayController]);
+cowsayApp.controller('CowsayController', [ '$log', CowsayController]);
 
 function CowsayController($log) {
 
